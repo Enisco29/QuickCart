@@ -7,9 +7,7 @@ if (!cached) {
 }
 
 async function connectDB() {
-  if (cached.conn) {
-    return cached.conn;
-  }
+  if (cached.conn) return cached.conn;
 
   if (!cached.promise) {
     const opts = {
@@ -17,7 +15,7 @@ async function connectDB() {
     };
 
     cached.promise = mongoose
-      .connect(`${process.env.MONGODB_URI}/mofiyin`, opts)
+      .connect(process.env.MONGODB_URI, opts)
       .then((mongoose) => {
         return mongoose;
       });
